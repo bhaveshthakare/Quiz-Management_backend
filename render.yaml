@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: quiz-platform-backend
+    runtime: java
+    plan: free
+    healthCheckPath: /actuator/health
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -Xmx256m -jar target/quiz-backend-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: DB_URL
+        value: jdbc:mysql://YOUR-AIVEN-HOST:3306/quiz_platform?useSSL=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - key: DB_USERNAME
+        value: avnadmin
+      - key: DB_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_ORIGIN
+        value: https://your-frontend.vercel.app
+      - key: ADMIN_EMAIL
+        value: admin@quizplatform.com
+      - key: ADMIN_PASSWORD
+        value: Admin@123
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USERNAME
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
