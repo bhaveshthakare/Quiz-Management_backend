@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Quiz Platform — Backend
 
 REST API for the Quiz Management & Online Assessment Platform. Java 21 + Spring Boot 4 + Spring Security (JWT) + MySQL. Deploys on **Render**.
@@ -100,3 +101,7 @@ Import `postman_collection.json` into Postman to test the full flow (register �
 `render.yaml` in the repo encodes the same configuration for Render Blueprint deploys.
 
 > Free tier: the `-Xmx256m` flag keeps memory within the free limit.
+=======
+# Quiz-Management_backend
+⚡ Spring Boot REST API built with Java. Handles authentication, business logic, and database operations using JPA. Deployed on Render and designed for scalable full-stack applications.
+>>>>>>> 31fc6af361627fcf25151e63c9bdc945fae8b396
