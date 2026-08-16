@@ -1,15 +1,13 @@
-<<<<<<< HEAD
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
 # Local secrets - never commit
+.env
 application-local.properties
 
-### STS ###
-.apt_generated
+# Build output
+target/
+*.log
+hs_err_pid*
+
+# Eclipse
 .classpath
 .factorypath
 .project
@@ -17,47 +15,15 @@ application-local.properties
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
+# IntelliJ IDEA
 .idea
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
+# VS Code
 .vscode/
-=======
-# Compiled class file
-*.class
 
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
->>>>>>> 31fc6af361627fcf25151e63c9bdc945fae8b396
+# OS
+.DS_Store
+Thumbs.db
