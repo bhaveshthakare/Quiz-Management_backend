@@ -21,6 +21,9 @@ public class JwtService {
     public JwtService(@Value("${app.jwt.secret}") String secret,
                       @Value("${app.jwt.expiration}") long expiration,
                       @Value("${app.jwt.issuer}") String issuer) {
+        if (secret == null || secret.isBlank() || secret.getBytes(StandardCharsets.UTF_8).length < 32) {
+            throw new IllegalStateException("app.jwt.secret (env JWT_SECRET) must be set to a non-empty value of at least 32 characters. Set it in the Render dashboard under Environment.");
+        }
         this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
         this.expiration = expiration;
         this.issuer = issuer;
