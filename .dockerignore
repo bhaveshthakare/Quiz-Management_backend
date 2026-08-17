@@ -1,0 +1,11 @@
+.git
+target
+.env
+.env.example
+*.md
+Dockerfile
+.dockerignore
+render.yaml
+postman_collection.json
+database
+certificates

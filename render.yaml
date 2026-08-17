@@ -1,20 +1,21 @@
 services:
   - type: web
     name: quiz-platform-backend
-    runtime: java
+    runtime: docker
     plan: free
     healthCheckPath: /actuator/health
-    buildCommand: ./mvnw clean package -DskipTests
-    startCommand: java -Xmx256m -jar target/quiz-backend-0.0.1-SNAPSHOT.jar
+    dockerfilePath: Dockerfile
     envVars:
       - key: DB_URL
-        value: jdbc:mysql://YOUR-AIVEN-HOST:3306/quiz_platform?useSSL=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
+        value: jdbc:mysql://YOUR-AIVEN-HOST:25511/rutudb?useSSL=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - key: DB_USERNAME
         value: avnadmin
       - key: DB_PASSWORD
         sync: false
       - key: JWT_SECRET
         generateValue: true
+      - key: JWT_EXPIRATION
+        value: "604800000"
       - key: FRONTEND_ORIGIN
         value: https://your-frontend.vercel.app
       - key: ADMIN_EMAIL
@@ -29,3 +30,5 @@ services:
         sync: false
       - key: SMTP_PASSWORD
         sync: false
+      - key: PORT
+        value: "8081"
