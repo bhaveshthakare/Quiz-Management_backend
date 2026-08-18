@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -107,13 +108,15 @@ public class AttemptService {
             Collections.shuffle(shuffled);
             String order = shuffled.stream().map(o -> String.valueOf(o.getId()))
                     .collect(Collectors.joining(","));
-            answerRepository.save(Answer.builder()
+            Answer answer = Answer.builder()
                     .attempt(attempt)
                     .question(q)
                     .questionPosition(position++)
                     .optionOrder(order)
                     .isCorrect(false)
-                    .build());
+                    .build();
+            answerRepository.save(answer);
+            attempt.getAnswers().add(answer);
         }
         return buildSession(attempt);
     }
@@ -257,7 +260,7 @@ public class AttemptService {
                 })
                 .toList();
         return new StartAttemptResponse(attempt.getId(), attempt.getQuiz().getTitle(),
-                attempt.getCompletedAt(), questions);
+                attempt.getCompletedAt().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(), questions);
     }
 
     private List<Option> optionOrder(String orderCsv, List<Option> options) {

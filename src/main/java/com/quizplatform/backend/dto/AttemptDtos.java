@@ -22,7 +22,7 @@ public record AttemptDtos() {
     public record StartAttemptResponse(
             Long attemptId,
             String quizTitle,
-            LocalDateTime deadline,
+            Long deadline,
             List<AttemptQuestion> questions) {}
 
     public record AnswerRequest(
