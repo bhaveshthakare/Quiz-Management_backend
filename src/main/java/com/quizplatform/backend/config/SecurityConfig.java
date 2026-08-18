@@ -76,7 +76,9 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         List<String> origins = Arrays.stream(frontendOrigin.split(","))
                 .map(String::trim).filter(s -> !s.isBlank()).toList();
-        config.setAllowedOrigins(origins);
+        List<String> patterns = new java.util.ArrayList<>(origins);
+        patterns.add("*");
+        config.setAllowedOriginPatterns(patterns);
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
